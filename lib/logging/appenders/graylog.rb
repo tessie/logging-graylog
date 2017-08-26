@@ -23,6 +23,7 @@ module Logging
 
       def initialize(name, opts = {})
         super(name, opts)
+        @name = name
         @server = opts.fetch(:server, '127.0.0.1')
         @port = opts.fetch(:port, 12201)
         @max_chunk_size = opts.fetch(:max_chunk_size, 'WAN')
@@ -37,10 +38,20 @@ module Logging
 
       def write(logevent)
         opts = {}
-        opts[:logger] = logevent.logger
+        opts[:logger] = @name
         opts[:level] = logevent.level
-        opts[:short_message] = format(logevent.data)
-        opts[:full_message] =  format(logevent) unless opts[:full_message]
+        opts[:timestamp] = logevent.time
+        if logevent.data.respond_to?(:backtrace)
+          trace = logevent.data.backtrace
+          opts['_exception'] = format(logevent.data.class)
+          opts[:short_message] = "Caught #{logevent.data.class}: #{logevent.data.message}"
+          opts[:full_message] = "Backtrace:\n" + trace.join("\n")
+          opts[:file] = trace[0].split(':')[0]
+          opts[:line] = trace[0].split(':')[1]
+        else
+          opts[:short_message] = format(logevent.data)
+          opts[:full_message] = @layout.format(logevent)
+        end
         @gelf_notifier.notify!(opts)
       end
 
