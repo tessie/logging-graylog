@@ -20,8 +20,6 @@ Bones {
   url          'http://rubygems.org/gems/logging-graylog'
   version      '1.1.2'
 
-  use_gmail
-
   depend_on 'logging'
 
   depend_on 'gelf'
