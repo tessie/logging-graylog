@@ -32,3 +32,20 @@ The logging framework uses the [little-plugger](https://github.com/twp/little-pl
        logger.info "Hello World"
 
 
+## Logging Appender params
+
+Please check [gelf-rb](https://github.com/graylog-labs/gelf-rb) for details
+  
+  name     :          'A name for the graylog logger'
+  
+  options  :       'Some optional params'
+  
+  * server :      The address of the graylog server, default would be localhost
+  
+  * level  :      The logging level, Default would be 'DEBUG'
+
+  * facility:     Default would be 'gelf-rb'
+  
+  * host     The default value is  hostname of server from which rails logs are logged. You could override by passing host.
+  
+#
