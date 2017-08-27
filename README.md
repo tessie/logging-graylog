@@ -1,4 +1,6 @@
-# logging-graylog
+# logging-graylog 
+
+<a href="https://badge.fury.io/rb/logging-graylog"><img src="https://badge.fury.io/rb/logging-graylog.svg" alt="Gem Version" height="18"></a>
 A graylog appender for the Ruby Logging framework
 
 
