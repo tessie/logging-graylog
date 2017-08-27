@@ -18,11 +18,13 @@ Bones {
   authors      'Tessy Joseph John'
   email        'tessyjoseph1992@gmail.com'
   url          'http://rubygems.org/gems/logging-graylog'
-  version      Logging::Plugins::Graylog::VERSION
+  version      '1.1.2'
 
   use_gmail
 
   depend_on 'logging'
+
+  depend_on 'gelf'
 
   depend_on 'bones-git', :development => true
 }
