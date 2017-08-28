@@ -5,7 +5,7 @@ A graylog appender for the Ruby Logging framework
 
 
 ## Description
-This gem provides a way to send logs to graylog.This appender is an extension of twp/logging gem.
+This gem provides a way to send logs to graylog.This appender is an extension of [twp/logging gem](https://github.com/TwP/logging).
 
 ## Installation
 The logging framework uses the [little-plugger](https://github.com/twp/little-plugger) gem based plugin system. All that needs to be done to start using the graylog appender is to install the gem.
