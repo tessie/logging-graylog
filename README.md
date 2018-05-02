@@ -18,15 +18,15 @@ The logging framework uses the [little-plugger](https://github.com/twp/little-pl
  
          require 'logging'
          Logging.init
-         graylog_appenders = Logging.appenders.graylog 'graylog-server'
+         graylog_appenders = Logging.appenders.graylog 'graylog-server',
                                     {
                                       server: 'localhost',
-                                      level : 'DEBUG'
+                                      level : 'DEBUG',
                                       port: '12201'
                                     }
         logger = Logging.logger['example_logger']
         logger.add_appenders \
-          graylog_appenders
+          graylog_appenders,
           Logging.appenders.file('example.log')
           
        logger.info "Hello World"
@@ -36,16 +36,20 @@ The logging framework uses the [little-plugger](https://github.com/twp/little-pl
 
 Please check [gelf-rb](https://github.com/graylog-labs/gelf-rb) for details
   
-  name     :          'A name for the graylog logger'
+  name     :      'A name for the graylog logger'
   
-  options  :       'Some optional params'
-  
+  options  :      'Some optional params'
+
   * server :      The address of the graylog server, default would be localhost
   
   * level  :      The logging level, Default would be 'DEBUG'
 
   * facility:     Default would be 'gelf-rb'
   
-  * host     The default value is  hostname of server from which rails logs are logged. You could override by passing host.
+  * host          The default value is  hostname of server from which rails logs are logged. You could override by passing host.
+
+  * app :         The name of the application, default would be logger
+
+  * tags :        Optional tags to filter on graylog
   
 #

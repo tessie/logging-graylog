@@ -27,11 +27,13 @@ module Logging
         @server = opts.fetch(:server, '127.0.0.1')
         @port = opts.fetch(:port, 12201)
         @max_chunk_size = opts.fetch(:max_chunk_size, 'WAN')
-        hash = {}
-        hash['host'] = opts.fetch(:host, Socket.gethostname)
-        hash['facility'] = opts.fetch(:facility, 'gelf-rb')
-        hash['level'] = LEVELS_MAP[opts.fetch(:level, 'DEBUG')]
-        @gelf_notifier = GELF::Notifier.new(@server, @port, @max_chunk_size, hash)
+        @hash = {}
+        @hash['app'] = opts.fetch(:app, nil)
+        @hash['facility'] = opts.fetch(:facility, 'gelf-rb')
+        @hash['host'] = opts.fetch(:host, Socket.gethostname)
+        @hash['level'] = LEVELS_MAP[opts.fetch(:level, 'DEBUG')]
+        @hash['tags'] = opts.fetch(:tags, nil)
+        @gelf_notifier = GELF::Notifier.new(@server, @port, @max_chunk_size, @hash)
       end
 
       private
