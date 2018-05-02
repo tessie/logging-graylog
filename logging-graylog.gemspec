@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'logging-graylog'
-  s.version     = '1.1.1'
+  s.version     = '1.1.2'
   s.date        = '2017-08-27'
   s.summary     = "logging-graylog!"
   s.description = "A plugin for logging gem to forward to graylog "

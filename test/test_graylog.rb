@@ -24,6 +24,13 @@ module TestLogging
         assert_equal(12207, appender.instance_variable_get('@port'))
         assert_equal('LAN', appender.instance_variable_get('@max_chunk_size'))
       end
+
+      def test_options
+        appender = Logging.appenders.graylog('graylog', {app: "test-graylog", tags: "LOGGING,RAILS,TEST_UNIT"})
+        assert_equal('127.0.0.1', appender.instance_variable_get('@server'))
+        assert_equal('test-graylog', appender.instance_variable_get('@hash')["app"])
+        assert_equal('LOGGING,RAILS,TEST_UNIT', appender.instance_variable_get('@hash')["tags"])
+      end
     end
   end
 end
